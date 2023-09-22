@@ -1,4 +1,4 @@
-FROM node:16-bullseye-slim
+FROM node:12-bullseye-slim
 
 # Install dependencies for msnodesqlv8
 RUN apt-get update && apt-get install -y \
@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y \
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 # Add Microsoft's package repository
-RUN curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
 
 # Install msnodesqlv8
-RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools18 unixodbc-dev
+RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools18 unixodbc-dev unixodbc
 RUN npm install -g node-gyp
 
 
